@@ -20,8 +20,8 @@ def fix_data(y,one_class):
         
     return y_fix
 
-# SVMを作成する関数
-def cleaate_svm(X,y):
+# SVMを作成する関数：係数ベクトルとバイアス項を返す
+def get_svm_params(X,y):
     # データの標準化処理
     sc = StandardScaler()
     sc.fit(X)
@@ -32,4 +32,7 @@ def cleaate_svm(X,y):
     # モデルの学習。fit関数で行う。
     model.fit(X_std, y)
 
-    return model
+    W = model.coef_
+    b = model.intercept_
+
+    return W,b
